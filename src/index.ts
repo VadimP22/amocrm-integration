@@ -1,5 +1,5 @@
 import style from "../styles/output.css"
-import { applyDataToSelector, updateSelectedId } from "./api-processing/selector-processing";
+import { getAndProcessSelectorData, updateContractSelectedId } from "./api-processing/selector-processing";
 import { SelectorControls } from "./components/selector/selector-controls";
 import { onContractPage } from "./page-handlers/contract-page";
 import { getContractId } from "./utilities/contract";
@@ -15,7 +15,6 @@ _define(['jquery'], function ($: any) {
             settings: function () {},
 
             init: function () {
-                //console.log("init")
                 $("head").append(`<style>${style}</style>`)
 
                 return true;
@@ -23,36 +22,19 @@ _define(['jquery'], function ($: any) {
 
             bind_actions: function () {
                 if (self.system().area == 'lcard') {
-                    //console.log("bind_action")
-                    let selectorControls = new SelectorControls((key: string) => { updateSelectedId(key, getContractId()) })
-
-                    self.$authorizedAjax({
-                        url: `/api/v4/leads/${getContractId()}`
-                    }).done(function (getContractResponse: any) {
-                        //console.log('success getContractById', getContractResponse);
-
-                        self.$authorizedAjax({
-                            url: `/api/v4/leads/pipelines/${getContractResponse.pipeline_id}`
-                        }).done(function (response: any) {
-                            //console.log('success getPipelineById', response);
-                            applyDataToSelector(response._embedded.statuses, getContractResponse.status_id, selectorControls)
-                        }).fail(function (err: any) {
-                            //console.log('error getPipilineById', err);
-                        });
-
-                    }).fail(function (err: any) {
-                        //console.log('error getContractById', err);
-                    });
-                    
+                    let contractId = getContractId()
+                    let selectorControls = new SelectorControls((key: string) => { updateContractSelectedId(key, contractId) })
+                    getAndProcessSelectorData(contractId, selectorControls)
                 }
+
                 return true;
             },
 
             render: function () {
-                //console.log("render")
                 if (self.system().area == 'lcard') {
                     onContractPage()
                 }
+                
                 return true;
             },
 

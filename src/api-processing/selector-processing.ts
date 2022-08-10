@@ -3,7 +3,7 @@ import { ListItem } from "../components/selector/selector-interfaces";
 
 declare let $: any
 
-export function applyDataToSelector(statuses: any, selectedStatusId: number, selectorControls: SelectorControls) {
+function applyDataToSelector(statuses: any, selectedStatusId: number, selectorControls: SelectorControls) {
     //console.log(statuses)
     //console.log(selectedStatusId)
 
@@ -29,12 +29,25 @@ export function applyDataToSelector(statuses: any, selectedStatusId: number, sel
     selectorControls.setList(list, selectedIndex)
 }
 
-export function updateSelectedId(newContractStatusId: string, contractId: string) {
+export function getAndProcessSelectorData(contractId: string, selectorControls: SelectorControls) {
+
+    $.get(`/api/v4/leads/${contractId}`).done((response1: any) => {
+
+        $.get(`/api/v4/leads/pipelines/${response1.pipeline_id}`).done((response2: any) => {
+            applyDataToSelector(response2._embedded.statuses, response1.status_id, selectorControls)
+        }).fail(function (err: any) {
+            console.log(err)
+        })
+
+    }).fail(function (err: any) {
+        console.log(err)
+    })
+}
+
+export function updateContractSelectedId(newContractStatusId: string, contractId: string) {
     let newStatusId = parseInt(newContractStatusId)
     let object = {status_id: newStatusId}
     let json = JSON.stringify(object)
-
-    //console.log(json, contractId)
 
     $.ajax({
         type: 'PATCH',
@@ -42,10 +55,9 @@ export function updateSelectedId(newContractStatusId: string, contractId: string
         data: json,
         processData: false,
         contentType: 'application/json',
-        /* success and error handling omitted for brevity */
     }).done(function (response: any) {
-        //console.log('success updateContractStatusId', response);
+        
     }).fail(function (err: any) {
-        //console.log('error updateContractStatusId', err);
+        console.log(err)
     });
 }
