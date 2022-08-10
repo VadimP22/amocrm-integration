@@ -10,11 +10,11 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
-        fallback: {
-            path: false
-        },
         alias: {
             templates: path.resolve(__dirname, './templates'),
+        },
+        fallback: {
+            path: false
         }
     },
     optimization: {
@@ -27,7 +27,11 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.twig$/i,
+                test: /\.css$/i,
+                use: 'raw-loader',
+            },
+            {
+                test: /\.html$/i,
                 use: 'raw-loader',
             }
         ]

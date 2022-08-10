@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/output.css" rel="stylesheet">
+    <script src="./selector-controls.js" defer></script>
+    <title>Document</title>
+</head>
+<body class="bg-gradient-to-tr from-cyan-900 to-slate-900 bg-no-repeat h-96">
+
+
+    <div id="root" class="w-full">
+        <div id="header" class="cursor-pointer flex justify-between items-center">
+            <p id="title" class="text-white font-bold font-sans">Selected Item</p>
+            <svg id="svgArrow" class="fill-white" width="10" height="10">
+                <polygon points="0,0 10,0 5,10"/>
+            </svg>
+        </div>
+        
+        <div id="bar" class="flex w-full bg-gray-200 h-1 mt-2">
+            <div class="h-1" style="width: 25%"></div>
+        </div>
+
+        <div id="list" class="hidden fixed bg-white mt-2" style="width: inherit;">
+            <div class="cursor-pointer text-gray-600 border-2 border-transparent hover:border-slate-300 font-sans font-semibold pl-4 py-2 bg-cyan-200 z-50 hover:bg-slate-200"></div>
+        </div>
+    </div>
+</body>
+</html>

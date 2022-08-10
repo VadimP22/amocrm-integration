@@ -1,4 +1,6 @@
-import { initContractStateSelector } from "./contract-state-selector/main";
+import style from "../styles/output.css"
+import { SelectorControls } from "./components/selector/selector-controls";
+import { onContractPage } from "./page-handlers/contract-page";
 
 declare function _define(arg0: string[], arg1: ($: any) => () => any): void
 _define(['jquery'], function ($: any) {
@@ -12,22 +14,22 @@ _define(['jquery'], function ($: any) {
 
             init: function () {
                 console.log("init")
-                $("head").append('<link href="" type="text/css" rel="stylesheet">')
+                $("head").append(`<style>${style}</style>`)
                 return true;
             },
 
             bind_actions: function () {
                 if (self.system().area == 'lcard') {
                     console.log("bind_action")
+                    let selectorControls = new SelectorControls((key: string) => {console.log(key)})
                 }
                 return true;
             },
 
             render: function () {
                 console.log("render")
-
-                if (self.system().area == "lcard") {
-                    initContractStateSelector(self.render)
+                if (self.system().area == 'lcard') {
+                    onContractPage()
                 }
                 return true;
             },
