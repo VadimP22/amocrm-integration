@@ -77,7 +77,7 @@ export class SelectorControls {
 
             for (let i of this.listItem) {
                 if (!isProgressBarBuilt) {
-                    console.log("x")
+                    //console.log("x")
                     this.addProgressBarLine(stageWidth, i.color)
                 }
 
@@ -101,13 +101,3 @@ export class SelectorControls {
         }
     }
 }
-
-let selectorControls = new SelectorControls((key: string) => { console.log(key) })
-
-let list: Array<ListItem> = [
-    {key: "k1", text: "selectme1", color: "#d47161"},
-    {key: "k2", text: "selectme2", color: "#79b589"},
-    {key: "k3", text: "selectme3", color: "#619ed4"},
-]
-
-selectorControls.setList(list, 1)
