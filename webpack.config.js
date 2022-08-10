@@ -10,15 +10,23 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            templates: path.resolve(__dirname, 'templates'),
+        }
     },
     optimization: {
-        minimize: false
+        minimize: false,
     },
     module: {
         rules: [{
-            test: /\.tsx?$/,
-            use: 'ts-loader',
-            exclude: /node_modules/,
-        }]
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.twig$/i,
+                use: 'raw-loader',
+            }
+        ]
     }
 }

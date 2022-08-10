@@ -43,8 +43,8 @@ function setWidgetFunctionName() {
 let buildSeries = series(
     cleanDistDir,
     runWebpack,
-    copyIntegrationFiles,
     setWidgetFunctionName,
+    copyIntegrationFiles,
     zipFiles
 )
 
