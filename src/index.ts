@@ -1,6 +1,7 @@
 import style from "../styles/output.css"
 import { SelectorApiProcessor } from "./api-processing/selector-api-processor";
 import { SelectorControls } from "./components/selector/selector-controls";
+import { UserSelectorControls } from "./components/user-selector/user-selector-controls"
 import { onContractPage } from "./page-handlers/contract-page";
 import { getContractId } from "./utilities/contract";
 
@@ -29,7 +30,10 @@ _define(['jquery'], function ($: any) {
                     let selectorControls = new SelectorControls()
                     let selectorApiProcessor = new SelectorApiProcessor(contractId, selectorControls)
 
+                    let userSelectorControls = new UserSelectorControls()
+
                     selectorApiProcessor.process()
+
                 }
 
                 return true;
