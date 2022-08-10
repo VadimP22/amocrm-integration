@@ -1,5 +1,5 @@
 import style from "../styles/output.css"
-import { getAndProcessSelectorData, updateContractSelectedId } from "./api-processing/selector-processing";
+import { SelectorApiProcessor } from "./api-processing/selector-api-processor";
 import { SelectorControls } from "./components/selector/selector-controls";
 import { onContractPage } from "./page-handlers/contract-page";
 import { getContractId } from "./utilities/contract";
@@ -14,6 +14,8 @@ _define(['jquery'], function ($: any) {
         this.callbacks = {
             settings: function () {},
 
+            
+
             init: function () {
                 $("head").append(`<style>${style}</style>`)
 
@@ -23,8 +25,11 @@ _define(['jquery'], function ($: any) {
             bind_actions: function () {
                 if (self.system().area == 'lcard') {
                     let contractId = getContractId()
-                    let selectorControls = new SelectorControls((key: string) => { updateContractSelectedId(key, contractId) })
-                    getAndProcessSelectorData(contractId, selectorControls)
+
+                    let selectorControls = new SelectorControls()
+                    let selectorApiProcessor = new SelectorApiProcessor(contractId, selectorControls)
+
+                    selectorApiProcessor.process()
                 }
 
                 return true;
@@ -34,7 +39,7 @@ _define(['jquery'], function ($: any) {
                 if (self.system().area == 'lcard') {
                     onContractPage()
                 }
-                
+
                 return true;
             },
 
@@ -64,6 +69,7 @@ _define(['jquery'], function ($: any) {
 
             onAddAsSource: function (pipeline_id: any) {}
         };
+
         return this;
     };
     return CustomWidget;

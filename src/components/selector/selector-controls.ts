@@ -9,15 +9,14 @@ export class SelectorControls {
     public title: HTMLElement | null;
     public list: HTMLElement | null;
     public bar: HTMLElement | null;
-    public onSelectCallback: (key: string) => void;
+    public onSelectCallback: (key: string) => void = function(key: string) { console.log(key) };
     public initialized = false
 
-    constructor(newOnSelectCallback: (key: string) => void) {
+    constructor() {
         this.button = document.getElementById("header")
         this.title = document.getElementById("title")
         this.list = document.getElementById("list")
         this.bar = document.getElementById("bar")
-        this.onSelectCallback = newOnSelectCallback
         this.listItem = []
 
         if (this.button != null) {
@@ -36,6 +35,10 @@ export class SelectorControls {
         }
 
         this.initialized = true
+    }
+
+    setOnSelectCallback(newCallback: (key: string) => void) {
+        this.onSelectCallback = newCallback
     }
 
     toggleList() {
