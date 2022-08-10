@@ -5,4 +5,4 @@ export function render(template: {data: string}, data: any): string {
     return t.render(data)
 }
 
-export type RenderCallback = (template: {data: string}, data: any) => string
+export type RenderCallback = (template: { data: string }, data: object) => string

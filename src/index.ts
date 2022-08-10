@@ -1,4 +1,4 @@
-import { initContractStateSelector } from "./contract-state-selector/render";
+import { initContractStateSelector } from "./contract-state-selector/main";
 
 declare function _define(arg0: string[], arg1: ($: any) => () => any): void
 _define(['jquery'], function ($: any) {
@@ -12,18 +12,23 @@ _define(['jquery'], function ($: any) {
 
             init: function () {
                 console.log("init")
-                console.log(self)
+                $("head").append('<link href="" type="text/css" rel="stylesheet">')
                 return true;
             },
 
             bind_actions: function () {
+                if (self.system().area == 'lcard') {
+                    console.log("bind_action")
+                }
                 return true;
             },
 
             render: function () {
                 console.log("render")
-                console.log(self)
-                initContractStateSelector(self.render)
+
+                if (self.system().area == "lcard") {
+                    initContractStateSelector(self.render)
+                }
                 return true;
             },
 

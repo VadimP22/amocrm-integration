@@ -1,5 +1,7 @@
 dist
 node_modules
 auxilary/**/*.css
+
 templates/**/*.twig
 templates/left_menu/hover_menu/salesbot/item_in_edit
+!templates/custom/**/*

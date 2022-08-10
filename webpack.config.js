@@ -10,8 +10,11 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        fallback: {
+            path: false
+        },
         alias: {
-            templates: path.resolve(__dirname, 'templates'),
+            templates: path.resolve(__dirname, './templates'),
         }
     },
     optimization: {
