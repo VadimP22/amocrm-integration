@@ -10,6 +10,7 @@ export class SelectorControls {
     public list: HTMLElement | null;
     public bar: HTMLElement | null;
     public onSelectCallback: (key: string) => void;
+    public initialized = false
 
     constructor(newOnSelectCallback: (key: string) => void) {
         this.button = document.getElementById("header")
@@ -33,6 +34,8 @@ export class SelectorControls {
         if (this.bar != null) {
             this.bar.innerHTML = ""
         }
+
+        this.initialized = true
     }
 
     toggleList() {
