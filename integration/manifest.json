@@ -32,6 +32,10 @@
       }
     },
     "locations": [
-      "lcard"
-    ]
+      "lcard",
+      "advanced_settings"
+    ],
+    "advanced": {
+      "title": "advanced.title"
+    }
   }

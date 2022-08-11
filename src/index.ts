@@ -28,6 +28,7 @@ _define(['jquery'], function ($: any) {
             },
 
             bind_actions: function () {
+                //console.log("bind action")
                 if (self.system().area == 'lcard') {
                     let contractId = getContractId()
 
@@ -58,7 +59,9 @@ _define(['jquery'], function ($: any) {
 
             dpSettings: function () {},
 
-            advancedSettings: function () {},
+            advancedSettings: function () {
+                console.log("advancedSettings")
+            },
 
             destroy: function () {},
 

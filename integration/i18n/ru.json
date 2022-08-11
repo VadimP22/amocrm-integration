@@ -7,5 +7,8 @@
     "settings": {
       "login": "Логин",
       "password": "Пароль"
+    },
+    "advanced": {
+      "title": "Advanced Title"
     }
 }
