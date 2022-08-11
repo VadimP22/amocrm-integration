@@ -141,7 +141,7 @@ export class AddUserSelectorApiProcessor {
             let newList = this.makeList(res.groups, res.managers)
             console.log("newlist", newList)
 
-            $.get("/api/v4/leads/504677/subscriptions").done((res2: any) => {
+            $.get(`/api/v4/leads/${this.contractId}/subscriptions`).done((res2: any) => {
                 try {
                     let filteredList = this.filterList(newList, res2._embedded.subscriptions)
                     this.addUserSelectorControls.setNewItemList(newList) 
