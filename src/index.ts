@@ -1,6 +1,8 @@
 import style from "../styles/output.css"
+import { AddUserSelectorApiProcessor } from "./api-processing/add-user-selector-api-processor";
 import { SelectorApiProcessor } from "./api-processing/selector-api-processor";
 import { UserSelectorApiProcessor } from "./api-processing/user-selector-api-processor";
+import { AddUserSelectorControls } from "./components/add-user-selector/add-user-selector-controls";
 import { SelectorControls } from "./components/selector/selector-controls";
 import { UserSelectorControls } from "./components/user-selector/user-selector-controls"
 import { onContractPage } from "./page-handlers/contract-page";
@@ -35,10 +37,12 @@ _define(['jquery'], function ($: any) {
                     let userSelectorControls = new UserSelectorControls()
                     let userSelectorApiProcessor = new UserSelectorApiProcessor(userSelectorControls, contractId)
 
+                    let addUserSelectorContols = new AddUserSelectorControls()
+                    let addUserSelectorApiProcessor = new AddUserSelectorApiProcessor(addUserSelectorContols, contractId)
+
                     selectorApiProcessor.process()
                     userSelectorApiProcessor.process()
-                    
-
+                    addUserSelectorApiProcessor.process()
                 }
 
                 return true;
