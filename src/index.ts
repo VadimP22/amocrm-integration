@@ -1,5 +1,6 @@
 import style from "../styles/output.css"
 import { SelectorApiProcessor } from "./api-processing/selector-api-processor";
+import { UserSelectorApiProcessor } from "./api-processing/user-selector-api-processor";
 import { SelectorControls } from "./components/selector/selector-controls";
 import { UserSelectorControls } from "./components/user-selector/user-selector-controls"
 import { onContractPage } from "./page-handlers/contract-page";
@@ -18,7 +19,8 @@ _define(['jquery'], function ($: any) {
             
 
             init: function () {
-                $("head").append(`<style>${style}</style>`)
+                $("head").append(`<style rel="stylesheet" type="text/css">${style}</style>`)
+                $("head").append('<script src="https://cdn.tailwindcss.com"></script>')
 
                 return true;
             },
@@ -31,8 +33,11 @@ _define(['jquery'], function ($: any) {
                     let selectorApiProcessor = new SelectorApiProcessor(contractId, selectorControls)
 
                     let userSelectorControls = new UserSelectorControls()
+                    let userSelectorApiProcessor = new UserSelectorApiProcessor(userSelectorControls, contractId)
 
                     selectorApiProcessor.process()
+                    userSelectorApiProcessor.process()
+                    
 
                 }
 

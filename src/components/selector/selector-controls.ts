@@ -4,13 +4,13 @@ import { ListItem } from "./selector-interfaces";
 
 export class SelectorControls {
 
-    public listItem: Array<ListItem>;
-    public button: HTMLElement | null;
-    public title: HTMLElement | null;
-    public list: HTMLElement | null;
-    public bar: HTMLElement | null;
-    public onSelectCallback: (key: string) => void = function(key: string) { console.log(key) };
-    public initialized = false
+    private listItem: Array<ListItem>;
+    private button: HTMLElement | null;
+    private title: HTMLElement | null;
+    private list: HTMLElement | null;
+    private bar: HTMLElement | null;
+    private onSelectCallback: (key: string) => void = function(key: string) { console.log(key) };
+    private initialized = false
 
     constructor() {
         this.button = document.getElementById("header")
@@ -88,7 +88,7 @@ export class SelectorControls {
                     this.setTitle(i.text)
                     isProgressBarBuilt = true
                 }
-                let newItem = E("div", "cursor-pointer text-gray-600 border-2 border-transparent hover:border-slate-300 font-sans font-semibold pl-4 py-2 bg-cyan-200 z-50 hover:bg-slate-200")
+                let newItem = E("div", "cursor-pointer text-gray-600 border-2 border-transparent hover:border-slate-300 font-sans font-semibold px-4 py-2 bg-cyan-200 z-50 hover:bg-slate-200")
                 let localIndex = index
                 newItem.style.backgroundColor = i.color
                 newItem.innerHTML = i.text

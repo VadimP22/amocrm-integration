@@ -39,6 +39,10 @@ export class UserSelectorControls {
         }
     }
 
+    setOnSelectCallback(newOnSelectCallback: (id: string) => void) {
+        this.onSelectCallback = newOnSelectCallback
+    }
+
     setNewItemList(newItemList: Array<UserSelectorListItem>, selectedIndex: number) {
         this.itemList = newItemList
         
@@ -55,7 +59,7 @@ export class UserSelectorControls {
                     this.list.appendChild(newSeparator)
                 } 
                 else {
-                    let newUser = E("div", "bg-white text-gray-800 font-semibold px-2 py-1 hover:bg-slate-200 cursor-pointer")
+                    let newUser = E("div", "bg-slate-100 text-gray-800 font-semibold px-2 py-1 hover:bg-slate-200 cursor-pointer")
                     newUser.innerHTML = item.text
                     newUser.onclick = () => {
                         this.setTitle(item.text)
